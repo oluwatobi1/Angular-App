@@ -1,12 +1,14 @@
 <div class="container-fluid">
-    <h2 align="center">Login Form</h2>
+    <h2>Login Form</h2>
+    {{mail.class}}
 
-    <form #loginForm="ngForm" novalidate>
+    <form>
+
 
         <div class="form-group"> 
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" 
-            [(ngModel)]=scrumUserModel.email name="mail" #mail="ngModel" pattern="^\S+@\S+\.com" [class.is-invalid]="mail.touched&&mail.invalid" required>
+            <label for="exampleInputEmail2">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email" 
+            [(ngModel)]=scrumFormModel.email name="mail" #mail="ngModel" pattern="^\S+@\S+\.com" [class.is-invalid]="mail.touched && mail.invalid" required>
                
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             <div *ngIf="mail.touched && (mail.invalid||mail.errors)">
@@ -17,9 +19,9 @@
 
 
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password"
-            #password='ngModel' [(ngModel)]=scrumUserModel.password [class.is-invalid]="password.invalid && password.touched" required>
+            <label for="exampleInputPassword2">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" name="password"
+            #password='ngModel' [(ngModel)]=scrumFormModel.password [class.is-invalid]="password.invalid && password.touched" required>
 
             <div *ngIf="password.touched&&(password.invalid||password.errors)">
                 <small class="text-danger">Enter password</small>
@@ -29,7 +31,7 @@
         <div class="form-group">
             <label for="exampleInputprojectname">Projectname</label>
             <input type="text" class="form-control" id="exampleInputprojectname" placeholder="Project Name" name="project"
-            #project='ngModel' [(ngModel)]=scrumUserModel.projectName [class.is-invalid]="project.invalid && project.touched" required>
+            #project='ngModel' [(ngModel)]=scrumFormModel.projectName [class.is-invalid]="project.invalid && project.touched" required>
 
             <div *ngIf="project.touched&&(project.invalid||project.errors)">
                 <small class="text-danger">Enter project</small>
