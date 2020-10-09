@@ -9,7 +9,7 @@ import { Scrumuser } from '../scrumuser';
 })
 export class LoginComponent implements OnInit {
 
-  scrumUserModel = new Scrumuser('','','','', '');
+  scrumFormModel = new Scrumuser('','','','', '');
 
   constructor() { }
 
