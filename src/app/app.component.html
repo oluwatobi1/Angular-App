@@ -1,12 +1,26 @@
-
 <br>
 <div class="container-fluid">
-    <h4 class="jumbotron" align="center">Welcome to ChatScrum</h4>
+    <div class="container-fluid row justify-content-center jumbotron">
+        <div>
+            <h4>Welcome to ChatScrum</h4>
+
+            <div class="row justify-content-between">
+                <div class="col-6">
+                    <a routerLink="">
+                    <button type="button" class="btn btn-success btn-sm btn-block">Home</button>
+                </a>
+                </div>
+                <div class="col-6">
+                    <a routerLink="/scrumboard"><button type="button"
+                        class="btn btn-success btn-sm btn-block">scrumboard</button></a>
+                </div>
+              </div>
+
+            
+                
+            
+        </div>
+    </div>
 </div>
 <hr>
 <router-outlet></router-outlet>
-<div class="container-fluid">
-    <p>Let's Get You Home  <a routerLink = "">
-        <button type="button" class="btn btn-primary btn-sm">Go Home</button>
-    </a></p>
-</div>
