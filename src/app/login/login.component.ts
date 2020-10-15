@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {   
   }
   onLoginSubmit(){
+    console.log(this.scrumFormData);
+    
     this._scrumdataservice.login(this.scrumFormData).subscribe(
       data=>{
         console.log("Success: ", data);
