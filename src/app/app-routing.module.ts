@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { ScrumboardComponent } from './scrumboard/scrumboard.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
   {path: 'home', component:HomepageComponent},
   {path: 'login', component:LoginComponent},
   {path: 'signup', component:SignupComponent},
-  {path: 'scrumboard', component:ScrumboardComponent}
+  {path: 'scrumboard/:project_id', component:ScrumboardComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

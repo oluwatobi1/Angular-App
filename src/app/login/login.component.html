@@ -1,7 +1,5 @@
 <div class = "container-fluid">
     <h1>Login Form</h1>
-
-    <h5>{{ feedbk }}</h5>
     
     <form (ngSubmit)=onLoginSubmit()>
         <div class = "form-group">
@@ -10,7 +8,7 @@
              name = "email" [(ngModel)]="scrumUserLoginData.email" #email = "ngModel" class = "form-control" ngModel>
              <div *ngIf = "email.errors && email.invalid && email.touched">
                 <small class = "text-danger" *ngIf = "email.errors.pattern">Email must contain '@' and the domain '.com'</small>
-                <small class = "text-danger" *ngIf = "email.errors.required">Email is required</small>
+                <small class = "text-danger" *ngIf = "email.errors.required">Email required</small>
              </div>
         </div>
 
@@ -27,11 +25,15 @@
         <div class = "form-group">
             <label>Project Name</label>
             <input required type = "text" [class.is-invalid] = "projectname.invalid && projectname.touched" #projectname = "ngModel" name = "projectname" [(ngModel)] = "scrumUserLoginData.projname" class = "form-control" ngModel>
-            <small class = "text-danger" [class.d-none] = "projectname.valid || projectname.untouched">Project name not specified</small>
+            <small class = "text-danger" [class.d-none] = "projectname.valid || projectname.untouched">Project name required</small>
+        </div>
+        
+        <div *ngIf="feedbk">
+            <h6 class="text-danger">{{ feedbk }}</h6>
+
         </div>
 
-        <h5>{{ feedbk }}</h5>
-
-        <button class = "btn btn-primary" type = "submit">Login</button>
+        <button class = "btn btn-primary btn-sm" type = "submit">Login</button>
     </form>
+
 </div>
