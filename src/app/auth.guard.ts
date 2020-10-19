@@ -1,16 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router,} from '@angular/router';
+import { ScrumdataService } from './scrumdata.service';
 
-import { AuthGuard } from './auth.guard';
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+  constructor(private _scrumdataService:ScrumdataService, private _router:Router){
 
-describe('AuthGuard', () => {
-  let guard: AuthGuard;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(AuthGuard);
-  });
-
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
-});
+  }
+  canActivate(): boolean{
+    if (this._scrumdataService.loggedIn()){
+      return true
+    }else{
+      this._router.navigate(['./login'])
+      return false
+    }
+  };
+  
+}
