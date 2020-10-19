@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AuthGuard } from './auth.guard';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

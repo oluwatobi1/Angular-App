@@ -10,6 +10,7 @@ import { ScrumdataService } from '../scrumdata.service';
 export class ScrumboardComponent implements OnInit {
   project_id = 0
   _participants = []
+  list = []
 
   constructor(private _route: ActivatedRoute,
     private _scrumdataService:ScrumdataService) { }
@@ -30,6 +31,7 @@ export class ScrumboardComponent implements OnInit {
         
       }
     )
+    
   }
 
 }
