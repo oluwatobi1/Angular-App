@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     CommonModule,
+    DragDropModule,
     BrowserAnimationsModule
   ],
   providers: [AuthGuard],
