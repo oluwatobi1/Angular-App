@@ -12,6 +12,7 @@ import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
