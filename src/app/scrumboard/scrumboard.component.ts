@@ -14,7 +14,7 @@ export class ScrumboardComponent implements OnInit {
   _participants = []
   list = []
 
-  todo = ['Learn Python', 'Learn Django', 'Learn PHP'];
+  todo = ["Learn Python", "Learn Django", "Learn PHP"];
   doing = ["Learn Design"];
   done = ["Learn Linux", "Learn Ansible"];
 
@@ -27,6 +27,12 @@ export class ScrumboardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>){
+    if (event.previousContainer === event.container){
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+
+    }else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex)
+    }
 
   }
 
