@@ -14,6 +14,8 @@ import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './chat/chat.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ChatComponent } from './chat/chat.component';
     HttpClientModule,
     FormsModule,
     CommonModule,
+    DragDropModule,
     BrowserAnimationsModule
   ],
   providers: [AuthGuard],

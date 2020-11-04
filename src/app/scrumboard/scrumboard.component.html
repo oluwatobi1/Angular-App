@@ -1,7 +1,54 @@
 <br>
 
+
+<div class="container-fluid">
+    <div class="example-container">
+        <h2>Tasks For The Week</h2>
+        <div cdkDropList #tftwList="cdkDropList" [cdkDropListData]="tftw"
+            [cdkDropListConnectedTo]="[tftdList, verifyList, doneList]" class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of tftw" cdkDrag>{{item.name}}</div>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <h2>Tasks For The Day </h2>
+        <div cdkDropList #tftdList="cdkDropList" [cdkDropListData]="tftd"
+            [cdkDropListConnectedTo]="[tftwList, verifyList, doneList]" class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of tftd" cdkDrag>{{item.name}}</div>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <h2>Verify Tasks List</h2>
+
+        <div cdkDropList #verifyList="cdkDropList" [cdkDropListData]="verify"
+            [cdkDropListConnectedTo]="[tftdList, tftdList, doneList]" class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of verify" cdkDrag>{{item.name}} </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="example-container">
+        <h2>Done Tasks List</h2>
+
+        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[tftdList, tftwList, verifyList]" class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.name}}</div>
+
+        </div>
+    </div>
+</div>
+
+
+
 <table *ngFor="let participant of _participants" class="table">
-       
+
     <hr>
     <p><strong>{{participant['user']['nickname']}}</strong></p>
     <tr>
@@ -10,36 +57,56 @@
         <th>Verify</th>
         <th>Done</th>
     </tr>
-    
+
 
     <tr>
         <td>
             <div *ngIf="participant['scrumgoal_set']!=''; else elseBlock">
-                <div *ngFor="let goal of participant['scrumgoal_set']">
-                    <div *ngIf="goal['status']==0 && goal['user'] == participant['id']">
-                        {{goal['name']}} <br>
-                        {{goal['id']}}
-                        <p>status: {{ goal['status']}}</p>
-                    </div>            
-                </div>            
+                <div class="example-container">
+                    <h2>Tasks For The Week</h2>
+                    <div cdkDropList #tftwLis="cdkDropList" [cdkDropListData]="tftw"
+                        [cdkDropListConnectedTo]="[tftdList, verifyList, doneList]" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div *ngFor="let item of tftw" cdkDrag>
+                            <div class="example-box" *ngIf="item['user'] == participant['id']">
+                                {{item['name']}} <br>
+                                {{item['id']}}
+                                <p>status: {{ item['status']}}</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <ng-template #elseBlock> <small class="text-warning">Goal Empty</small> </ng-template>
+
             </div>
-            <ng-template #elseBlock> <small class="text-warning">Goal Empty</small> </ng-template>
-            
         </td>
 
 
         <td>
             <div *ngIf="participant['scrumgoal_set']!=''; else elseBlock">
-                <div *ngFor="let goal of participant['scrumgoal_set']">
-                    <div *ngIf="goal['status']==1 && goal['user'] == participant['id']">
-                        {{goal['name']}} <br>
-                        {{goal['id']}}
-                        <p>status: {{ goal['status']}}</p>
-                    </div>            
-                </div>            
+                <div class="example-container">
+                    <h2>Tasks For The Week</h2>
+                    <div cdkDropList #tftwList="cdkDropList" [cdkDropListData]="tftw"
+                        [cdkDropListConnectedTo]="[tftdList, verifyList, doneList, tftwLis]" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div *ngFor="let item of tftd"  cdkDrag>
+                            <div class="example-box" *ngIf="item['user'] == participant['id']">
+                                {{item['name']}} <br>
+                                {{item['id']}}
+                                <p>status: {{ item['status']}}</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <ng-template #elseBlock> <small class="text-warning">Goal Empty</small> </ng-template>
+
             </div>
-            <ng-template #elseBlock> <small class="text-warning">Goal Empty</small> </ng-template>
         </td>
+
 
         <td>
             <div *ngIf="participant['scrumgoal_set']!=''; else elseBlock">
@@ -48,21 +115,22 @@
                         {{goal['name']}} <br>
                         {{goal['id']}}
                         <p>status: {{ goal['status']}}</p>
-                    </div>            
-                </div>            
+                    </div>
+                </div>
             </div>
             <ng-template #elseBlock> <small class="text-warning">Goal Empty</small> </ng-template>
         </td>
 
         <td>
             <div *ngIf="participant['scrumgoal_set']!=''; else elseBlock">
+
                 <div *ngFor="let goal of participant['scrumgoal_set']">
                     <div *ngIf="goal['status']== 3 && goal['user'] == participant['id']">
                         {{goal['name']}} <br>
                         {{goal['id']}}
                         <p>status: {{ goal['status']}}</p>
-                    </div>            
-                </div>            
+                    </div>
+                </div>
             </div>
             <ng-template #elseBlock> <small class="text-warning">Goal Empty</small> </ng-template>
         </td>
