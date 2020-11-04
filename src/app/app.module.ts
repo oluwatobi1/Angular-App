@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     ScrumboardComponent,
     HomepageComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
