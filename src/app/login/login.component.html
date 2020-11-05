@@ -1,39 +1,52 @@
-<div class = "container-fluid">
-    <h1>Login Form</h1>
+<div class="container">
+    <h2 class="signup-header">Login</h2>
     
-    <form (ngSubmit)=onLoginSubmit()>
-        <div class = "form-group">
-            <label>Email</label>
-            <input required pattern = "^(([a-zA-Z0-9._%+-]+)@([a-zA-Z]+).(com))$" type = "email" [class.is-invalid] = "email.invalid && email.touched"
-             name = "email" [(ngModel)]="scrumUserLoginData.email" #email = "ngModel" class = "form-control" ngModel>
-             <div *ngIf = "email.errors && email.invalid && email.touched">
-                <small class = "text-danger" *ngIf = "email.errors.pattern">Email must contain '@' and the domain '.com'</small>
-                <small class = "text-danger" *ngIf = "email.errors.required">Email required</small>
-             </div>
-        </div>
 
-        <div class = "form-group">
-            <label>Password</label>
-           <input required type = "password" pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-zA-Z\d\s])).{8,}$" [class.is-invalid] = "password.invalid && password.touched"
-            name = "password" [(ngModel)]="scrumUserLoginData.password" #password = "ngModel" class = "form-control" ngModel>
-            <div *ngIf = "password.errors && password.invalid && password.touched">
-                <small class = "text-danger" *ngIf = "password.errors.pattern">Password must contain at least 8 characters, one special character and a number</small>
-                <small class = "text-danger" *ngIf = "password.errors.required">Password is required</small>
-            </div>
+    <h4 class="text-danger">{{ feedback }}</h4>
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" novalidate>
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control"
+        [class.is-invalid]="formControls.email.invalid && (formControls.email.touched || submit)"
+        name="email"
+      />
+      <div *ngIf="formControls.email.invalid && (formControls.email.touched || formControls.email.dirty || submit)">
+        <small *ngIf="formControls.email.errors.required">Email is required</small>
+        <small *ngIf="formControls.email.errors.email">Please enter a valid email</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [class.is-invalid]="formControls.password.invalid && (formControls.password.touched || submit)"
+        name="password"
+      />
+      <div *ngIf="formControls.password.invalid && (formControls.password.touched || formControls.password.dirty || submit)">
+          <small *ngIf="formControls.password.errors.required">Password is required</small>
         </div>
-
-        <div class = "form-group">
-            <label>Project Name</label>
-            <input required type = "text" [class.is-invalid] = "projectname.invalid && projectname.touched" #projectname = "ngModel" name = "projectname" [(ngModel)] = "scrumUserLoginData.projname" class = "form-control" ngModel>
-            <small class = "text-danger" [class.d-none] = "projectname.valid || projectname.untouched">Project name required</small>
+    </div>
+    <div class="form-group">
+      <label for="project-name">Project Name: </label>
+      <input
+        type="text"
+        formControlName="projectName"
+        class="form-control"
+        [class.is-invalid]="formControls.projectName.invalid && (formControls.projectName.touched || submit)"
+        name="project-name"
+      />
+      <div *ngIf="formControls.projectName.invalid && (formControls.projectName.touched || formControls.projectName.dirty || submit)">
+          <small *ngIf="formControls.projectName.errors.required">Project Name is required</small>
         </div>
-        
-        <div *ngIf="feedbk">
-            <h6 class="text-danger">{{ feedbk }}</h6>
+    </div>
 
-        </div>
-
-        <button class = "btn btn-primary btn-sm" type = "submit">Login</button>
-    </form>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+  </form>
+  <p>Don't have an account? <a routerLink="/signup">Signup here</a></p>
 
 </div>
