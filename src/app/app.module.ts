@@ -15,6 +15,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './chat/chat.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CreateprojectComponent } from './createproject/createproject.component';
+import { ChangeroleComponent } from './changerole/changerole.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ScrumboardComponent,
     HomepageComponent,
     ChatComponent,
+    CreateprojectComponent,
+    ChangeroleComponent,
   ],
   imports: [
     BrowserModule,
