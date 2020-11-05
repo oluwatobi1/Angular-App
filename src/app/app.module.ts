@@ -14,7 +14,11 @@ import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+
 import { ChatComponent } from './chat/chat.component';
+
+import { CreateprojectComponent } from './createproject/createproject.component';
+import { ChangeroleComponent } from './changerole/changerole.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,8 @@ import { ChatComponent } from './chat/chat.component';
     ScrumboardComponent,
     HomepageComponent,
     ChatComponent,
+    CreateprojectComponent,
+    ChangeroleComponent,
   ],
   imports: [
     BrowserModule,
