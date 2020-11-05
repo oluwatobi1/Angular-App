@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';  
+import { ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,11 +15,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-
 import { ChatComponent } from './chat/chat.component';
-
 import { CreateprojectComponent } from './createproject/createproject.component';
+
 import { ChangeroleComponent } from './changerole/changerole.component';
 
 @NgModule({
@@ -36,6 +36,7 @@ import { ChangeroleComponent } from './changerole/changerole.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     DragDropModule,
     BrowserAnimationsModule

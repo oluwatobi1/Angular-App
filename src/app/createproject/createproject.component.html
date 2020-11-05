@@ -1,1 +1,49 @@
-<p>createproject works!</p>
+<div class="container">
+    <h2 class="create-porject-header">Create Project</h2>
+    <h4 class="text-danger">{{ feedback }}</h4>
+  
+  <form [formGroup]="createProjectForm" (ngSubmit)="onCreateProjectSubmit()" novalidate>
+      <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            [class.is-invalid]="formControls.email.invalid && (formControls.email.touched || submit)"
+            name="email"
+          />
+          <div *ngIf="formControls.email.invalid && (formControls.email.touched || formControls.email.dirty || submit)">
+            <small *ngIf="formControls.email.errors.required">Email is required</small>
+            <small *ngIf="formControls.email.errors.email">Please enter a valid email</small>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="fullname">Full Name:</label>
+            <input
+              type="text"
+              formControlName="fullname"
+              class="form-control"
+              [class.is-invalid]="formControls.fullname.invalid && (formControls.fullname.touched || submit)"
+              name="fullname"
+            />
+            <div *ngIf="formControls.fullname.invalid && (formControls.fullname.touched || formControls.fullname.dirty || submit)">
+              <small *ngIf="formControls.fullname.errors.required">Fullname is required</small>
+            </div>
+          </div>
+    <div class="form-group">
+      <label for="project">Project Name: </label>
+      <input
+        type="text"
+        formControlName="projectName"
+        class="form-control"
+        [class.is-invalid]="formControls.projectName.invalid && (formControls.projectName.touched || submit)"
+        name="project"
+      />
+      <div *ngIf="formControls.projectName.invalid && (formControls.projectName.touched || formControls.projectName.dirty || submit)">
+          <small *ngIf="formControls.projectName.errors.required">Project Name is required</small>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary btn-block">Create Project</button>
+  </form>
+  </div>

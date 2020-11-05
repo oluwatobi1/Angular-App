@@ -1,94 +1,65 @@
-<div class="container-fluid">
-    <h2 align="center">Sign Up Form</h2>
-
-    <h6>{{ userSignupForm.value|json }}</h6>
-    <hr> 
-    <h6>{{ scrumUserModel | json}}</h6>
-    {{password.userClass}}
-
-    <form #userSignupForm="ngForm" novalidate (ngSubmit)="onSubmit()">
-
-        <div class="form-group"> 
-            <label for="exampleInputName">Full Name</label>
-            <input type="text" class="form-control" id="exampleInputName" placeholder="Full Name" name="FullName"
-                [(ngModel)]=scrumUserModel.fullname #fullname='ngModel' [class.is-invalid]="fullname.invalid && fullname.touched" required>
-            
-            <div *ngIf="fullname.errors && fullname.touched">
-                <small class="text-danger">Name required</small>
-                
-
-            </div>
+<div class="container">
+    <h2 class="signup-header">Sign Up</h2>
+    <h4 class="text-danger">{{ feedback }}</h4>
+  
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="formControls.email.invalid && (formControls.email.touched || submit)"
+          name="email"
+        />
+        <div *ngIf="formControls.email.invalid && (formControls.email.touched || formControls.email.dirty || submit)">
+          <small *ngIf="formControls.email.errors.required">Email is required</small>
+          <small *ngIf="formControls.email.errors.email">Please enter a valid email</small>
         </div>
-
-        <div class="form-group"> 
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" 
-                name="Email" [(ngModel)]=scrumUserModel.email #Email='ngModel' pattern="^\S+@\S+\.com" [class.is-invalid]="Email.invalid && Email.touched" required>
-               
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            <div *ngIf="Email.touched && (Email.invalid||Email.errors)">
-                               
-                <small class="text-danger" *ngIf="Email.errors.required">Email Required</small>
-                <small class="text-danger" *ngIf="Email.errors.pattern">Email must be an email</small>
-            </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="fullname">Full Name:</label>
+        <input
+          type="text"
+          formControlName="fullname"
+          class="form-control"
+          [class.is-invalid]="formControls.fullname.invalid && (formControls.fullname.touched || submit)"
+          name="fullname"
+        />
+        <div *ngIf="formControls.fullname.invalid && (formControls.fullname.touched || formControls.fullname.dirty || submit)">
+          <small *ngIf="formControls.fullname.errors.required">Fullname is required</small>
         </div>
-
-        <div class="form-group"> 
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password"
-             [(ngModel)]=scrumUserModel.password #password='ngModel' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-zA-Z\d\s])).{8,}$" [class.is-invalid]="password.invalid && password.touched" required> 
-            
-             <div *ngIf="password.touched && (password.invalid || password.errors)">
-                <small class="text-danger" *ngIf="password.errors.required">Enter Password</small>                
-                <small class="text-danger" *ngIf="password.errors.pattern">Password Minimum eight characters, at least one letter, one number and one special character:</small>
-            </div>
-
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="formControls.password.invalid && (formControls.password.touched || submit)"
+          name="password"
+        />
+        <div *ngIf="formControls.password.invalid && (formControls.password.touched || formControls.password.dirty || submit)">
+          <small *ngIf="formControls.password.errors.required">Password is required</small>
+          <small *ngIf="formControls.password.errors.pattern">Password should be 8-15 characters and must contain, an alphabet, a number and a special character</small>
         </div>
-
-
-        <div class="form-group">
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="Usertype"
-                [(ngModel)]=scrumUserModel.type #type='ngModel' [class.is-invalid]="type.invalid && type.touched" required>
-    
-                <option >{{usertype[1]}}</option>
-                <option >{{usertype[0]}}</option>
-
-                <!-- <option *ngFor="let eachElement of usertype">{{ eachElement }} </option> -->
-            </select>
-
-            <div *ngIf="type.touched && (type.errors || type.invalid)">
-                <small class="text-danger"> Select a type </small>
-
-            </div>
-    
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputprojectname">Projectname</label>
-            <input type="text" class="form-control" id="exampleInputprojectname" placeholder="Project Name" name="project"
-            #project='ngModel' [(ngModel)]=scrumUserModel.projectName [class.is-invalid]="project.invalid && project.touched" required>
-
-            <div *ngIf="project.touched&&(project.invalid||project.errors)">
-                <small class="text-danger">Enter project</small>
-
-            </div>
-
-        </div>
-
-        <div *ngIf="data">
-            <h6 class="text-success">{{ data['message'] }}</h6>
-        </div>     
-      
-        
-        <br>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-
-
+      </div>
+  
+      <div class="form-group">
+        <label for="user-types">User Type:</label>
+        <select formControlName="userType" class="form-control" name="user-type">
+          <option
+            *ngFor="let userType of userTypes; let i = index"
+            [value]="userTypes[i]"
+          >
+            {{ userType }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
     </form>
-
-
-<br>
-
-</div>
+    <p>Already have an account? <a routerLink="/login">Login here</a></p>
+  </div>

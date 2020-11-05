@@ -1,1 +1,35 @@
-<p>chat works!</p>
+
+<br> <br>
+<div align="center">
+
+<div  style="max-height:50%; overflow-y:scroll; border: 2px solid black; background: white; position: center; bottom: 100px; right:40px; width: 40%" cdkDrag>
+    <div class="container">
+    <div class="row" *ngFor="let message of messages">
+      <div class="col-sm-10 offset-2 text-right" *ngIf="message.email == authUserEmail">
+      <p style="margin-bottom:2px;">You</p>
+      <p><span style="background-color:black; color:white; padding:10px; border-radius:5px;">{{message.message}}</span></p>
+      </div>
+      <div class="col-sm-10" *ngIf="message.email != authUserEmail">
+        <p style="margin-bottom:2px;">{{message.name}}</p>
+        <p><span style="background-color:blue; color:white; padding:10px; border-radius:5px;">{{message.message}}</span></p>
+        </div>
+    </div>
+    <form [formGroup]="chatForm" (ngSubmit)="send()" class="mt-3" style="position:relative; width:100%; bottom:10px">
+      <div class="form-group">
+        
+        <input
+          type="text"
+          formControlName="chat"
+          class="form-control"
+          placeholder="type your message"
+          name="chat"
+          autofocus
+        />
+      </div>
+    
+      <button type="submit" class="btn btn-primary btn-block">Send</button>
+    </form>
+    </div>
+    </div>
+       
+</div>

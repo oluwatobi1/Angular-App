@@ -1,3 +1,5 @@
+import { FormBuilder, Validators } from '@angular/forms';
+import { ScrumdataService } from './../scrumdata.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateprojectComponent implements OnInit {
 
-  constructor() { }
+  createProjectForm;
+  submit;
+  project = {};
+  slacks;
+  feedback = '';
+  constructor(private scrrumDataService: ScrumdataService, private formBuilder: FormBuilder) {
+    this.createProjectForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      fullname: ['', Validators.required],
+      projectName: ['', Validators.required],
+    });
 
-  ngOnInit(): void {
+    this.slacks = ['false', 'true'];
+   }
+
+  ngOnInit() {
+  }
+
+  get formControls() { return this.createProjectForm.controls; }
+
+  setProject() {
+    this.project = Object.assign(this.project, this.createProjectForm.value);
+  }
+
+  onCreateProjectSubmit() {
+    this.submit = true;
+    if ((this.submit && this.createProjectForm.untouched) || this.createProjectForm.invalid) {
+      return;
+    }
+    this.setProject();
+    this.scrrumDataService.createProject(this.project).subscribe(
+      data => {
+        console.log('Success', data);
+        this.feedback = "Project Created Successfully";
+      },
+      error => {
+        console.log('error', error);
+        this.feedback = "Project Creation failed";
+      }
+    )
   }
 
 }
