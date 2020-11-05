@@ -13,9 +13,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ChatComponent } from './chat/chat.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
